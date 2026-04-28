@@ -1,8 +1,10 @@
 
 import React, { useState } from "react";
 import {useNavigate} from 'react-router-dom'
+import Swal from "sweetalert2"
 import axios from "axios"
 const AdminLogin = () => {
+ 
   const [email,setEmail]=useState("");
   const [password,setPassword]=useState("");
 
@@ -10,13 +12,26 @@ const AdminLogin = () => {
 
     const handleSubmit=async(e)=>{
       e.preventDefault()
-      let api=`${import.meta.env.VITE_API_URL}/admin/adminlogin`;
+       try {
+        let api=`${import.meta.env.VITE_API_URL}/admin/adminlogin`;
       const response=await axios.post(api,{email:email,password:password});
-      console.log(response.data)
+      localStorage.setItem("Admin",response.data.admin.email)
+      Swal.fire({
+      title: "Success!",
+      text: "Login successful",
+      icon: "success",
+      confirmButtonText: "OK"
+    });
       navigate("/admindashboard")
-
-
-
+   
+    
+  } catch (error) {
+      Swal.fire({
+  title: "Error!",
+  text: error.response.data,
+  icon: "error"
+});
+  }
     }
 
   return (

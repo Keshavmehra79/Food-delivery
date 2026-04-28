@@ -12,6 +12,7 @@ function Layout() {
   <Header/>
   <Slider/>
     <Cards/>
+    
     <Footer/>
   </>
   )

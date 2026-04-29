@@ -1,5 +1,6 @@
 import axios from "axios";
 import React, { useState } from "react";
+import Swal from "sweetalert2";
 const AddProduct = () => {
   const [images,setImage]=useState([]);
 
@@ -27,7 +28,8 @@ const AddProduct = () => {
 
   const handleSubmit = async(e) => {
     e.preventDefault();
-     const formdata=new FormData();
+     try {
+      const formdata=new FormData();
         for(let key in input){
           formdata.append(key,input[key])
         } 
@@ -43,7 +45,21 @@ const AddProduct = () => {
     "Content-Type":"multipart/form-data"
   }
 });
-        alert(response.data);
+        Swal.fire({
+              title: "Success!",
+              text: "Data saved successful",
+              icon: "success",
+              confirmButtonText: "OK"
+            });
+      
+      
+     } catch (error) {
+        Swal.fire({
+        title: "Error!",
+        text: "Something went wrong",
+        icon: "error"
+      });
+     }
   };
 
   return (
@@ -91,9 +107,9 @@ const AddProduct = () => {
               onChange={handleChange}
             >
               <option value="">Select category</option>
-              <option value="pizza">Vegetarian</option>
-              <option value="burger">Non-vegetarian</option>
-              <option value="drinks">Drinks</option>
+              <option value="Vegetarian">Vegetarian</option>
+              <option value="Non-vegetarian">Non-vegetarian</option>
+              <option value="Drinks">Drinks</option>
             </select>
           </div>
 
@@ -132,6 +148,7 @@ const AddProduct = () => {
               className="w-full mt-1 px-4 py-2 border rounded-lg focus:ring-2 focus:ring-green-400 outline-none"
               onChange={handleChange}
             >
+              <option >Select</option>
               <option value="available">Available</option>
               <option value="outofstock">Out of Stock</option>
             </select>

@@ -1,10 +1,10 @@
 import React, { useState } from "react";
-import burger from "../images/Burger.png"
-import pizza from "../images/Pizza.png"
-import roll from "../images/roll.png"
-import butterchiken from "../images/butter chiken.png"
-import noodles from "../images/noodle.png"
-import salad from "../images/salad.png"
+// import burger from "../images/Burger.png"
+// import pizza from "../images/Pizza.png"
+// import roll from "../images/roll.png"
+// import butterchiken from "../images/butter chiken.png"
+// import noodles from "../images/noodle.png"
+// import salad from "../images/salad.png"
 const foodItems = [
   {
     name: "Margherita Pizza",
@@ -13,7 +13,7 @@ const foodItems = [
     rating: "4.9",
     time: "22 min",
     tag: "Bestseller",
-    emoji: pizza,
+    emoji: "",
     bg: "bg-orange-50",
   },
   {
@@ -23,7 +23,7 @@ const foodItems = [
     rating: "4.8",
     time: "18 min",
     tag: "Hot 🔥",
-    emoji: burger,
+    emoji: "",
     bg: "bg-red-50",
   },
   {
@@ -33,7 +33,7 @@ const foodItems = [
     rating: "4.9",
     time: "30 min",
     tag: "New",
-    emoji: roll,
+    emoji: "",
     bg: "bg-green-50",
   },
   {
@@ -43,7 +43,7 @@ const foodItems = [
     rating: "5.0",
     time: "25 min",
     tag: "Chef's Pick",
-    emoji: butterchiken,
+    emoji: "",
     bg: "bg-yellow-50",
   },
   {
@@ -53,7 +53,7 @@ const foodItems = [
     rating: "4.7",
     time: "20 min",
     tag: "Spicy",
-    emoji: noodles,
+    emoji: "",
     bg: "bg-pink-50",
   },
   {
@@ -63,7 +63,7 @@ const foodItems = [
     rating: "4.6",
     time: "10 min",
     tag: "Healthy",
-    emoji: salad,
+    emoji: "",
     bg: "bg-lime-50",
   },
 ];
@@ -111,7 +111,7 @@ const Cards = () => {
 
               <div className="flex items-center justify-between">
                 <span className="text-lg font-bold text-gray-800">{item.price}</span>
-
+                <button  className="bg-red-500 text-white text-sm font-semibold px-4 py-2 rounded-xl transition-colors">Order now</button>
                 {cart[item.name] ? (
                   <div className="flex items-center gap-2 bg-orange-50 border border-orange-300 rounded-xl px-3 py-1.5">
                     <button
@@ -136,9 +136,9 @@ const Cards = () => {
                 ) : (
                   <button
                     onClick={() => handleAdd(item.name)}
-                    className="bg-orange-500 hover:bg-orange-600 text-white text-sm font-semibold px-4 py-2 rounded-xl transition-colors"
+                    className="bg-white hover:bg-orange-600 text-black text-sm border  font-semibold px-4 py-2 rounded-xl transition-colors"
                   >
-                    + Add
+                    + Add to cart
                   </button>
                 )}
               </div>

@@ -1,5 +1,5 @@
 import React from "react";
-import img8 from "../images/img8 (3).jpg"
+import img8 from "../images/pizza.jpg"
 const Header = () => {
   return (
     <div className="pl-20 pr-20 py-3">

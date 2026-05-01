@@ -49,9 +49,7 @@ const addProduct=async(req,res)=>{
 
 const adminLogin=async(req,res)=>{
    const { email, password }=req.body;
-   const admin=await adminmodel.findOne({email:email})
-   console.log(admin);
-   
+   const admin=await adminmodel.findOne({email:email})   
    if(!admin){
     res.status(404).send("Invalid email")
    }
@@ -63,7 +61,18 @@ const adminLogin=async(req,res)=>{
     res.send({admin})
 }
 
+const getProduct=async(req,res)=>{
+    try {
+        const products=await productModel.find();
+        res.status(200).send({products})
+        
+    } catch (error) {
+        res.status(400).send("Something went wrong")
+    }
+}
+
 module.exports={
     adminLogin,
+    getProduct,
     addProduct
 }

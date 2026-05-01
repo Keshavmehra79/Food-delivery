@@ -13,18 +13,12 @@ const AddProduct = () => {
     status: "",
   });
 
-  
-  
-
-  
-
   const handleChange = (e) => {
     setFormData({
       ...input,
       [e.target.name]: e.target.value,
     });
   };
-
 
   const handleSubmit = async(e) => {
     e.preventDefault();
@@ -166,3 +160,6 @@ const AddProduct = () => {
 };
 
 export default AddProduct;
+
+
+

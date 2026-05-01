@@ -1,5 +1,5 @@
 // AdminDashboard.jsx
-import React from "react";
+import React, { useEffect } from "react";
 import {
   FiHome,
   FiBox,
@@ -30,13 +30,19 @@ const data = [
 import { Link,Outlet } from "react-router-dom";
  
 const AdminDashboard = () => {
-
-     const nav=useNavigate();
+  const nav=useNavigate();
+     
 const logOut=()=>{
   localStorage.clear();
   nav("/admin")
 
 }
+
+useEffect(()=>{
+   if(!localStorage.getItem("Admin")){
+        nav("/admin")
+      }
+},[])
   return (
     <div className="flex min-h-screen bg-gray-50">
 
@@ -47,7 +53,7 @@ const logOut=()=>{
         </h1>
 
         <ul className="space-y-4">
-          <li className="flex items-center gap-3 p-2 hover:bg-gray-800 rounded cursor-pointer">
+          <li className="flex items-center gap-3 p-2 hover:bg-gray-800 rounded cursor-pointer" onClick={()=>{nav("/admindashboard")}}>
             <FiHome /> Dashboard
           </li>
           <li className="flex items-center gap-3 p-2 hover:bg-gray-800 rounded cursor-pointer">

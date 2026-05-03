@@ -1,6 +1,9 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
+import { addtocart } from "../cartSlice";
 const Cards = () => {
+  const dispatch=useDispatch();
   const [products,setProducts]=useState([]);
 
   const loaddata=async()=>{
@@ -56,7 +59,7 @@ const Cards = () => {
                 <span className="text-lg font-bold text-gray-800">₹{item.price}</span>
                 <button  className="bg-red-500 text-white text-sm font-semibold px-4 py-2 rounded-xl transition-colors">Order now</button>
                   
-                      <button className="bg-white hover:bg-orange-600 text-black text-sm border  font-semibold px-4 py-2 rounded-xl transition-colors">
+                      <button className="bg-white hover:bg-orange-600 text-black text-sm border  font-semibold px-4 py-2 rounded-xl transition-colors" onClick={()=>dispatch(addtocart({id:item._id,foodname:item.foodname,price:item.price,status:item.status,image:item.defaultImage,description:item.description,qnty:1}))}>
                     + Add to cart
                     </button>
               </div>

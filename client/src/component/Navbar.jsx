@@ -1,8 +1,11 @@
 import React, { useState } from "react";
 import { FiSearch, FiUser, FiShoppingCart } from "react-icons/fi";
 import logo from "../images/logo.png"
+import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 const Navbar = () => {
-  const [cartCount] = useState(2);
+    const cart=useSelector(state=>state.mycart.cart)
+  const nav=useNavigate();
 
   return (
     <div className="flex items-center justify-between px-8 py-4 bg-white shadow-sm sticky top-0 z-50">
@@ -39,12 +42,12 @@ const Navbar = () => {
         </button>
 
         {/* Cart */}
-        <button className="relative flex items-center gap-2 bg-orange-500 text-white px-5 py-2.5 rounded-xl hover:bg-orange-600 transition-colors text-sm font-semibold">
+        <button onClick={()=>{nav("/cart")}} className="relative flex items-center gap-2 bg-orange-500 text-white px-5 py-2.5 rounded-xl hover:bg-orange-600 transition-colors text-sm font-semibold">
           <FiShoppingCart className="text-lg" />
           <span className="hidden md:block">Cart</span>
-          {cartCount > 0 && (
+          {cart.length > 0 && (
             <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs w-5 h-5 rounded-full flex items-center justify-center font-bold">
-              {cartCount}
+              {cart.length}
             </span>
           )}
         </button>

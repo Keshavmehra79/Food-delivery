@@ -1,15 +1,28 @@
-import React from "react";
+import axios from "axios";
+import React, { useState ,useEffect} from "react";
 import { useNavigate } from "react-router-dom";
-
-
+import { FaSquareMinus } from "react-icons/fa6";
+import { FaPlusSquare } from "react-icons/fa";
 
 const SeeProducts = () => {
     const navigate = useNavigate();
-  const products = [
-    { name: "Pizza", price: "₹200" },
-    { name: "Burger", price: "₹120" },
-    { name: "Pasta", price: "₹150" },
-  ];
+  
+     const [products,setProducts]=useState([]);
+    
+      const loaddata=async()=>{
+        try {
+          const response=await axios.get("http://localhost:9000/admin/getproduct")
+    
+          setProducts(response.data.products);      
+          
+        } catch (error) {
+            console.log(error);
+        }
+      }
+    
+      useEffect(()=>{
+        loaddata();
+      },[])
 
   return (
     <div className="p-4">
@@ -26,39 +39,75 @@ const SeeProducts = () => {
 >
   + Add Product
 </button>
-      </div>
 
-      {/* 🔸 Products Grid */}
-      <div className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-        {products.map((item, i) => (
-          <div
-            key={i}
-            className="bg-white border rounded-xl p-5 shadow-sm hover:shadow-lg transition duration-300"
-          >
-            <h3 className="text-lg font-semibold text-gray-700 mb-2">
-              {item.name}
-            </h3>
+</div>
+<div className="overflow-x-auto">
+              <table className="w-full text-center border-collapse">
+                <thead>
+                  <tr className="bg-gray-200 text-gray-700">
+                    <th className="p-3">Image</th>
+                    <th className="p-3">Food</th>
+                    <th className="p-3">Description</th>
+                    <th className="p-3">Price</th>
+                    <th className="p-3">Edit</th>
+                    <th className="p-3">Remove</th>
+                  </tr>
+                </thead>
 
-            <p className="text-green-600 font-bold text-xl mb-4">
-              {item.price}
-            </p>
+                <tbody>
+                  {products.map((item) =>{
+                   return(
+                     
+                    <tr
+                      key={item.id}
+                      className="border-b hover:bg-gray-50 transition"
+                    >
+                      <td className="p-3">
+                        <img
+                          src={item.defaultImage}
+                          alt={item.foodname}
+                          className="h-16 w-16 object-cover rounded-lg mx-auto"
+                        />
+                      </td>
 
-            {/* Action buttons */}
-            <div className="flex justify-between">
-              <button className="text-sm bg-blue-500 hover:bg-blue-600 text-white px-3 py-1 rounded">
-                Edit
-              </button>
+                      <td className="p-3 font-semibold">
+                        {item.foodname} 
+                      </td>
 
-              <button className="text-sm bg-red-500 hover:bg-red-600 text-white px-3 py-1 rounded">
-                Delete
-              </button>
+                      <td className="p-3 text-gray-500">
+                        {item.description}
+                      </td>
+
+                      <td className="p-3 font-medium text-green-600">
+                        ₹{item.price}
+                      </td>
+
+                      <td className="p-3">
+                       <button className="px-3 font-bold border rounded-2xl text-black cursor-pointer " >
+                        Edit
+                       </button>
+                      </td>
+
+                      
+
+                      <td >
+                        <button className="px-3 font-bold text-blue-600 cursor-pointer border rounded-2xl" >
+                        Remove
+                        </button>
+                      </td>
+                    </tr>
+                    
+                  )})}
+
+ 
+
+                </tbody>
+              </table>
+
+
             </div>
-          </div>
-        ))}
-      </div>
-
-    </div>
-  );
+</div>)
+     
 };
 
 export default SeeProducts;

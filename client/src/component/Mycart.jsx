@@ -2,6 +2,7 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { FaPlusSquare } from "react-icons/fa";
+import { toast } from "react-toastify";
 import { FaSquareMinus } from "react-icons/fa6";
 import { qntyInc, qntyDec,removeItem } from "../cartSlice";
 import { useNavigate } from "react-router-dom";
@@ -14,6 +15,17 @@ function Mycart() {
     0
   )
   
+
+  const goOncheckout=()=>{
+    if(cart.length==0){
+      toast.warn("Please add atleast one product to checkout",{
+        position:"top-center",
+        theme:"dark"
+      });
+      return
+    }
+    navigate("/checkout")
+  }
   return (
     <div className="min-h-screen bg-gray-100 p-6">
       <h1 className="text-3xl font-bold text-center mb-6">🛒 My Cart</h1>
@@ -125,7 +137,7 @@ function Mycart() {
             </div>
           </>
         )}
-        <button className="text-red-500 cursor-pointer hover:scale-110 transition  px-2 border-2 rounded-full ml-auto" onClick={()=>navigate("/checkout")}><p>Checkout</p></button>
+        <button className="text-red-500 cursor-pointer hover:scale-110 transition  px-2 border-2 rounded-full ml-auto" onClick={goOncheckout}><p>Checkout</p></button>
       </div>
     </div>
   );

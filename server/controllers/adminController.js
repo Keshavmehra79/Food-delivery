@@ -71,8 +71,23 @@ const getProduct=async(req,res)=>{
     }
 }
 
+const delProduct=async(req,res)=>{
+    const {id}= req.query;
+    
+    await productModel.findByIdAndDelete(id);
+    res.send("Product removed succefully")  
+}
+
+const myUpdate=async(req,res)=>{
+    const {_id,foodname,status,price}=req.body;
+    await productModel.findByIdAndUpdate(_id,{foodname,status,price})
+    res.send("Product Updated succefully")
+}
+
 module.exports={
     adminLogin,
     getProduct,
-    addProduct
+    addProduct,
+    delProduct,
+    myUpdate
 }

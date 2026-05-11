@@ -1,11 +1,15 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { FiSearch, FiUser, FiShoppingCart } from "react-icons/fi";
 import logo from "../images/logo.png"
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 const Navbar = () => {
+    const navigate=useNavigate();
+    
     const cart=useSelector(state=>state.mycart.cart)
   const nav=useNavigate();
+
+
 
   return (
     <div className="flex items-center justify-between px-8 py-4 bg-white shadow-sm sticky top-0 z-50">
@@ -36,7 +40,7 @@ const Navbar = () => {
       <div className="flex items-center gap-5">
 
         {/* Login */}
-        <button className="flex items-center gap-2 text-gray-600 hover:text-orange-500 transition-colors text-sm font-medium">
+        <button onClick={()=>{navigate("/userlogin")}} className="hover:cursor-pointer flex items-center gap-2 text-gray-600 hover:text-orange-500 transition-colors text-sm font-medium">
           <FiUser className="text-lg" />
           <span className="hidden md:block">Login</span>
         </button>

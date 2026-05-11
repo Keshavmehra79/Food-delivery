@@ -11,6 +11,9 @@ import DashboardHome from './admin/DashboardHome'
 import AddProduct from './admin/AddProduct'
 import Mycart from './component/Mycart'
 import Checkout from './component/Checkout'
+import Quickorder from './component/Quickorder';
+import Userlogin from './component/Userlogin';
+import Orders from './admin/Orders';
 function App() {
   return (<>
 <BrowserRouter>
@@ -19,9 +22,12 @@ function App() {
     {/* User Layout */}
     <Route path="/" element={<Layout />}>
       <Route index element={<Home />} />
+      <Route path='/home' element={<Home />} />
     </Route>
       <Route path='/cart' element={<Mycart />} />
       <Route path='/checkout' element={<Checkout />} />
+      <Route path='/quickorder/:id' element={<Quickorder />} />
+      <Route path='/userlogin' element={<Userlogin />} />
 
 
     {/* Admin Login */}
@@ -32,6 +38,7 @@ function App() {
       <Route index element={<DashboardHome />} />
       <Route path="seeproducts" element={<Seeproducts />} />
        <Route path="addproduct" element={<AddProduct />} /> 
+       <Route path="orders" element={<Orders />} /> 
     </Route>
 
   </Routes>

@@ -12,8 +12,9 @@ function Layout() {
   <Header/>
   <Slider/>
     <Cards/>
-    
+    <Outlet/>
     <Footer/>
+    
   </>
   )
 }

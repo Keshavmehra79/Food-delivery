@@ -2,7 +2,9 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { addtocart } from "../cartSlice";
+import { useNavigate } from "react-router-dom";
 const Cards = () => {
+  const navigate=useNavigate()
   const dispatch=useDispatch();
   const [products,setProducts]=useState([]);
 
@@ -57,7 +59,7 @@ const Cards = () => {
 
               <div className="flex items-center justify-between">
                 <span className="text-lg font-bold text-gray-800">₹{item.price}</span>
-                <button  className="bg-red-500 text-white text-sm font-semibold px-4 py-2 rounded-xl transition-colors">Order now</button>
+                <button onClick={()=>{navigate(`/quickorder/${item._id}`)}} className="bg-red-500 text-white text-sm font-semibold px-4 py-2 rounded-xl transition-colors hover:cursor-pointer">Order now</button>
                   
                       <button className="bg-white hover:bg-orange-600 text-black text-sm border  font-semibold px-4 py-2 rounded-xl transition-colors" onClick={()=>dispatch(addtocart({id:item._id,foodname:item.foodname,price:item.price,status:item.status,image:item.defaultImage,description:item.description,qnty:1}))}>
                     + Add to cart
@@ -72,3 +74,4 @@ const Cards = () => {
 };
 
 export default Cards;
+

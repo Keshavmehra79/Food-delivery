@@ -1,12 +1,18 @@
-import axios from "axios";
-import React, { useState } from "react";
 import { FaArrowRight } from "react-icons/fa";
-import { useSelector } from "react-redux";
 import { toast } from "react-toastify";
+import { useSelector } from "react-redux";
+import axios from "axios";
+import { useState } from "react";
 function Checkout() {
+   
+    
   const [input,setInput]=useState({})
   const [form,setForm]=useState("")
   const cart = useSelector((state) => state.mycart.cart);
+
+  console.log(cart)
+  
+
 
   const totalamount = cart.reduce(
     (acc, item) => acc + item.price * item.qnty,
@@ -49,10 +55,7 @@ console.log(form)
       orderData
     );
 
-    toast.success(res.data.message,{
-      position:"top-center",
-      theme:"dark"
-    });
+    
     setForm(null)
   } catch (error) {
     console.error(error);
@@ -61,6 +64,11 @@ console.log(form)
 
 
   const handlePayment = async () => {
+
+     if(!form){
+      toast.warn("Please fill delivery details")
+      return
+  }
 
     // create order from backend
     const { data } = await axios.post(
@@ -79,8 +87,12 @@ console.log(form)
       order_id: data.id,
 
       handler: function (response) {
-        alert("Payment Successful");
-
+           Swal.fire({
+                            title: "Payment Successful",
+                            text: 'Your order placed successfully.',
+                            icon: 'success',
+                            confirmButtonText: 'OK!'
+                          });
         console.log(response);
       },
 
@@ -229,7 +241,7 @@ console.log(form)
             {/* Button */}
         <button
           type="submit"
-          // onClick={handlePayment}
+          onClick={handlePayment}
           className="cursor-pointer w-full bg-yellow-300 hover:bg-yellow-400 transition text-black py-3 rounded-xl font-semibold flex items-center justify-center gap-2"
         >
           Next

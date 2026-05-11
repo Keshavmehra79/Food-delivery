@@ -3,6 +3,7 @@ const multer=require("multer");
 const {CloudinaryStorage}=require('multer-storage-cloudinary')
 const cloudinary=require("../cloudinary")
 const productModel = require("../models/productModel");
+const orderModel=require("../models/orderModel")
 
 const storage=new CloudinaryStorage({
     cloudinary:cloudinary,
@@ -84,10 +85,22 @@ const myUpdate=async(req,res)=>{
     res.send("Product Updated succefully")
 }
 
+
+const getOrders=async(req,res)=>{
+    try {
+        const orders=await orderModel.find();
+        res.status(200).send({orders})
+        
+    } catch (error) {
+        res.status(400).send("Something went wrong")
+    }
+}
+
 module.exports={
     adminLogin,
     getProduct,
     addProduct,
     delProduct,
-    myUpdate
+    myUpdate,
+    getOrders
 }

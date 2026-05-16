@@ -14,6 +14,7 @@ import Checkout from './component/Checkout'
 import Quickorder from './component/Quickorder';
 import Userlogin from './component/Userlogin';
 import Orders from './admin/Orders';
+import Users from './admin/Users';
 function App() {
   return (<>
 <BrowserRouter>
@@ -39,6 +40,7 @@ function App() {
       <Route path="seeproducts" element={<Seeproducts />} />
        <Route path="addproduct" element={<AddProduct />} /> 
        <Route path="orders" element={<Orders />} /> 
+       <Route path="users" element={<Users />} /> 
     </Route>
 
   </Routes>

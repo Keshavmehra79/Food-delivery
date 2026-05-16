@@ -62,7 +62,7 @@ useEffect(()=>{
           <li onClick={()=>{nav("/admindashboard/orders")}} className="flex items-center gap-3 p-2 hover:bg-gray-800 rounded cursor-pointer">
             <FiShoppingCart /> Orders
           </li>
-          <li className="flex items-center gap-3 p-2 hover:bg-gray-800 rounded cursor-pointer">
+          <li onClick={()=>{nav("/admindashboard/users")}} className="flex items-center gap-3 p-2 hover:bg-gray-800 rounded cursor-pointer">
             <FiUsers /> Users
           </li>
         </ul>

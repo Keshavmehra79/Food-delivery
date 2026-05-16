@@ -7,6 +7,7 @@ route.post("/addproduct",adminController.addProduct);
 route.get("/getproduct",adminController.getProduct)
 route.get("/delete",adminController.delProduct)
 route.get("/orders",adminController.getOrders)
+route.get("/users",adminController.getUsers)
 route.post("/update",adminController.myUpdate)
 
 route.post("/create-order", async (req, res) => {

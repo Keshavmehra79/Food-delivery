@@ -51,7 +51,9 @@ const addProduct=async(req,res)=>{
 
 const adminLogin=async(req,res)=>{
    const { email, password }=req.body;
+   console.log(req.body)
    const admin=await adminmodel.findOne({email:email})   
+   console.log(admin)
    if(!admin){
     res.status(404).send("Invalid email")
    }

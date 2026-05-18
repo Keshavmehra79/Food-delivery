@@ -94,9 +94,8 @@ const orderProduct=async(req,res)=>{
 
 const userlogin=async(req,res)=>{
 
-    const {name, email, password}=req.body;
+  const {name, email, password}=req.body;
     const user=await userModels.findOne({email:email})
-      console.log(user)      
    if(!user){
     res.status(400).send("Invalid Info")
    }

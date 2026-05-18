@@ -141,7 +141,7 @@ function Userlogin() {
             </label>
 
             <input
-              type="text"
+              type="password"
               name="password"
               onChange={handleChange}
               placeholder="Enter your password"

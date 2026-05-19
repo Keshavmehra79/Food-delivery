@@ -25,7 +25,7 @@ console.log(mainImage);
 
       const loaddata=async()=>{
     try {
-      const response=await axios.get(`http://localhost:9000/user/orderproduct/?id=${id}`)
+      const response=await axios.get(`${import.meta.env.VITE_API_URL}/user/orderproduct/?id=${id}`)
 
       setProducts(response.data);       
     } catch (error) {
@@ -68,7 +68,7 @@ console.log(mainImage);
   
     try {
       const res = await axios.post(
-        "http://localhost:9000/user/sendemail",
+        `${import.meta.env.VITE_API_URL}/user/sendemail`,
         orderData
       );
   
@@ -89,7 +89,7 @@ console.log(mainImage);
   
       // create order from backend
       const { data } = await axios.post(
-        "http://localhost:9000/admin/create-order",
+        `${import.meta.env.VITE_API_URL}/admin/create-order`,
         {
           amount: products.price,
         }

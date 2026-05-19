@@ -12,7 +12,7 @@ const SeeProducts = () => {
     
       const loaddata=async()=>{
         try {
-          const response=await axios.get("http://localhost:9000/admin/getproduct")
+          const response=await axios.get(`${import.meta.env.VITE_API_URL}/admin/getproduct`)
     
           setProducts(response.data.products);      
           
@@ -26,7 +26,7 @@ const SeeProducts = () => {
       },[])
 
       const delProduct=async(id)=>{
-        const api=`http://localhost:9000/admin/delete/?id=${id}`;
+        const api=`${import.meta.env.VITE_API_URL}/admin/delete/?id=${id}`;
         const response=await axios.get(api)
         Swal.fire({
                       title: "Success!",

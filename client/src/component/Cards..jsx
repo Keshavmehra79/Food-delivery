@@ -10,7 +10,7 @@ const Cards = () => {
 
   const loaddata=async()=>{
     try {
-      const response=await axios.get("http://localhost:9000/admin/getproduct")
+      const response=await axios.get(`${import.meta.env.VITE_API_URL}/admin/getproduct`)
 
       setProducts(response.data.products);      
       

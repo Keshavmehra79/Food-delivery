@@ -18,12 +18,14 @@ const AdminLogin = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-
+  console.log(email)
+  console.log(password)
   const handleSubmit = async (e) => {
     e.preventDefault()
-    try {
-      let api = `${import.meta.env.VITE_API_URL}/admin/adminlogin`;
+      try {
+        let api = `${import.meta.env.VITE_API_URL}/admin/adminlogin`;        
       const response = await axios.post(api, { email: email, password: password });
+      console.log(response)
       localStorage.setItem("Admin", response.data.admin.email)
       Swal.fire({
         title: "Success!",

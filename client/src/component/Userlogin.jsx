@@ -15,7 +15,7 @@ function Userlogin() {
 
     const handleSubmit = async() => {
         try {
-            const res = await axios.post("http://localhost:9000/user/userlogin", input);
+            const res = await axios.post(`${import.meta.env.VITE_API_URL}/user/userlogin`, input);
             localStorage.setItem("token",res.data.token)
             navigate("/home")
             toast.success("You are logged in!")

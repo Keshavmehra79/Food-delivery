@@ -55,11 +55,11 @@ const adminLogin=async(req,res)=>{
    const admin=await adminmodel.findOne({email:email})   
    console.log(admin)
    if(!admin){
-    res.status(404).send("Invalid email")
+   return res.status(404).send("Invalid email")
    }
 
    if(admin.password!=password){
-    res.status(404).send("Invalid password")
+    return res.status(404).send("Invalid password")
 
    }
     res.send({admin})

@@ -51,7 +51,7 @@ console.log(form)
 
   try {
     const res = await axios.post(
-      "http://localhost:9000/user/sendemail",
+      `${import.meta.env.VITE_API_URL}/user/sendemail`,
       orderData
     );
 
@@ -72,7 +72,7 @@ console.log(form)
 
     // create order from backend
     const { data } = await axios.post(
-      "http://localhost:9000/admin/create-order",
+      `${import.meta.env.VITE_API_URL}/admin/create-order`,
       {
         amount: totalamount,
       }

@@ -6,7 +6,7 @@ function Orders() {
     
       const loaddata=async()=>{
         try {
-          const response=await axios.get("http://localhost:9000/admin/orders")
+          const response=await axios.get(`${import.meta.env.VITE_API_URL}/admin/orders`)
     
           setOrders(response.data.orders);      
           

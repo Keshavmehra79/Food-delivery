@@ -8,7 +8,7 @@ function Home() {
     try {
       const token=await localStorage.getItem("token");
     if(token){
-         let api="http://localhost:9000/user/userauth"; 
+         let api=`${import.meta.env.VITE_API_URL}/user/userauth`; 
       const res=await axios.post(api,null,{headers:{"mytoken":token}})
       localStorage.setItem("name",res.data.user.name);
       localStorage.setItem("email",res.data.user.email);

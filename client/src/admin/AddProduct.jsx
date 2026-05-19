@@ -33,7 +33,7 @@ const AddProduct = () => {
         }
      
 
-        let api='http://localhost:9000/admin/addproduct';
+        let api=`${import.meta.env.VITE_API_URL}/admin/addproduct`
         const response=await axios.post(api,formdata,{
   headers:{
     "Content-Type":"multipart/form-data"

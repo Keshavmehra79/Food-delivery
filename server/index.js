@@ -11,10 +11,10 @@ app.use(express.json())
 mongoose.connect(process.env.DB_URL).then(()=>{
     console.log("Db connceted")
 })
-
-
 app.use("/admin",adminRouter)
 app.use("/user",userRouter)
+
+
 
 
 

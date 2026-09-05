@@ -46,7 +46,7 @@ const SeeProducts = () => {
       }
 
       const handleUpdate=async()=>{
-        const api=`http://localhost:9000/admin/update`;
+        const api=`${import.meta.env.VITE_API_URL}/admin/update`;
         const response=await axios.post(api,editData)
            Swal.fire({
                       title: "Success!",

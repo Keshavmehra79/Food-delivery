@@ -60,7 +60,6 @@ const adminLogin=async(req,res)=>{
 
    if(admin.password!=password){
     return res.status(404).send("Invalid password")
-
    }
     res.send({admin})
 }
